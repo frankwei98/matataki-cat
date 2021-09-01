@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
-import { useRecoilState } from "recoil";
-import { accessTokenAtom } from "../atoms/AccessToken.atom";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react"
 import { useMatatakiApi } from "../hooks/useMatatakiApi";
-import { useQuery } from "../hooks/useQuery"
 
 export function CatPage() {
     const [ipfsHash, setHash] = useState('')
@@ -12,8 +10,16 @@ export function CatPage() {
     const { matatakiApi } = useMatatakiApi()
 
     const getContent = useCallback(async () => {
-        const { data } = await matatakiApi.catByHash(ipfsHash);
-        setCatRes(data.data)
+        try {
+            const { data } = await matatakiApi.catByHash(ipfsHash);
+            setCatRes(data.data)
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                alert(error.response?.data.message)
+            } else {
+                alert(error)
+            }
+        }
     }, [matatakiApi, ipfsHash])
 
     useEffect(() => {

@@ -4,8 +4,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 import { CallBackHandler } from './pages/callback';
 import { Providers } from './_providers';
 import { CatPage } from './pages/cat';
