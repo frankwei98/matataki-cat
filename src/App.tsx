@@ -8,6 +8,7 @@ import logo from './logo.svg';
 import './App.css';
 import { CallBackHandler } from './pages/callback';
 import { Providers } from './_providers';
+import { CatPage } from './pages/cat';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/callback">
             <CallBackHandler />
+          </Route>
+          <Route path="/cat">
+            <CatPage />
           </Route>
         </Switch>
       </div>

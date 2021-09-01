@@ -1,10 +1,12 @@
 import { useEffect, useMemo } from "react"
+import { useHistory } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { accessTokenAtom } from "../atoms/AccessToken.atom";
 import { useQuery } from "../hooks/useQuery"
 
 export function CallBackHandler() {
     const query = useQuery();
+    const history = useHistory()
     const [_, tokenSetter] = useRecoilState(accessTokenAtom)
     const oauthToken = useMemo(() => {
         return query.get('token')
@@ -13,7 +15,8 @@ export function CallBackHandler() {
     useEffect(() => {
         if (!oauthToken) return;
         tokenSetter(oauthToken);
-    }, [tokenSetter, oauthToken])
+        history.push('/cat')
+    }, [history, tokenSetter, oauthToken])
 
     if (!oauthToken) {
         return <div className="error">
@@ -22,6 +25,6 @@ export function CallBackHandler() {
     }
 
     return <div className="callback">
-        {oauthToken}
+        Redirecting...
     </div>
 }
