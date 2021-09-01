@@ -1,25 +1,29 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import { CallBackHandler } from './pages/callback';
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      
+      <Switch>
+          <Route exact path="/">
+            <a href="https://developer.matataki.io/app/bfba5b6eace73430/oauth">Login With Matataki</a>
+          </Route>
+          <Route path="/callback">
+            <CallBackHandler />
+          </Route>
+        </Switch>
+      </div>
+      </Router>
   );
 }
 
