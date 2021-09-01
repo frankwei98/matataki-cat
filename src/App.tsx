@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link
@@ -8,10 +7,11 @@ import {
 import logo from './logo.svg';
 import './App.css';
 import { CallBackHandler } from './pages/callback';
+import { Providers } from './_providers';
 
 function App() {
   return (
-    <Router>
+    <Providers>
     <div className="App">
       
       <Switch>
@@ -23,7 +23,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-      </Router>
+      </Providers>
   );
 }
 
